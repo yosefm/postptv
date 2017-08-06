@@ -43,7 +43,7 @@ def pdf_bins(data, num_bins, log_bins=False):
     return hist, bin_edges
 
 def generalized_histogram_disp(hist, bin_edges, log_bins=False, 
-    log_density=False, marker='o'):
+    log_density=False, marker='o', **kwds):
     """
     Draws a given histogram  according to the visual custom of the fluid 
     dynamics community.
@@ -55,6 +55,7 @@ def generalized_histogram_disp(hist, bin_edges, log_bins=False,
     log_densify - Show the log of the probability density value. May cause 
         problems if ``log_bins`` is True.
     marker - marker style for matplotlib.
+    kwds - passed down to the plotting function.
     
     Returns:
     the list of lines drawn, Matplotlib objects.
@@ -64,7 +65,7 @@ def generalized_histogram_disp(hist, bin_edges, log_bins=False,
     else:
         plt = pl.semilogy if log_density else pl.plot
         
-    lines = plt(bin_edges, hist, marker)
+    lines = plt(bin_edges, hist, marker, **kwds)
     pl.ylabel("Probability density [-]")
     
     return lines
